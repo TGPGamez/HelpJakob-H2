@@ -8,21 +8,19 @@ namespace HelpJakob_H2
 {
     public class Message
     {
-        string to, from, body, subject, cc;
+        public string To { get; set; }
+        public string From { get; set; }
+        public string Body { get; set; }
+        public string Subject { get; set; }
+        public string Cc { get; set; }
 
         public Message(string to, string from, string body, string subject, string cc)
         {
-            this.to = to;
-            this.from = from;
-            this.body = body;
-            this.subject = subject;
-            this.cc = cc;
+            To = to;
+            From = from;
+            Body = body;
+            Subject = subject;
+            Cc = cc;
         }
-
-        public string To { get => to; set => to = value; }
-        public string From { get => from; set => from = value; }
-        public string Body { get => body; set => body = value; }
-        public string Subject { get => subject; set => subject = value; }
-        public string Cc { get => cc; set => cc = value; }
     }
 }
