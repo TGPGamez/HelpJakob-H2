@@ -11,20 +11,20 @@ namespace HelpJakob_H2
         /// <summary>
         /// Used to send message to recipient 
         /// </summary>
-        public void sendMessage(MessageCarrier type, Message m, bool isHTML)
+        public void SendMessage(string recipient, MessageCarrier messageCarrier, Message message, bool isHTML)
         {
             //Sends out a email to receiver
-            if (type.Equals(MessageCarrier.Smtp))
+            if (messageCarrier.Equals(MessageCarrier.Smtp))
             {
                 if (isHTML)
-                    m.Body = HTMLConverter.ConvertBodyToHTML(m.Body);
+                    message.Body = HTMLConverter.ConvertBodyToHTML(message.Body);
                 //Implement code to send with Smtp
             }
 
-            if (type.Equals(MessageCarrier.VMessage))
+            if (messageCarrier.Equals(MessageCarrier.VMessage))
             {
                 if (isHTML)
-                    m.Body = HTMLConverter.ConvertBodyToHTML(m.Body);
+                    message.Body = HTMLConverter.ConvertBodyToHTML(message.Body);
                 //Implement code to send with Smtp VMessage
             }
         }
@@ -32,20 +32,11 @@ namespace HelpJakob_H2
         /// <summary>
         /// Used to send a message to all 
         /// </summary>
-        public void sendMessageToAll(MessageCarrier type, string[] to, Message m, bool isHTML)
+        public void SendMessageToAll(string[] recipients, MessageCarrier messageCarrier, Message message, bool isHTML)
         {
-            if (type.Equals(MessageCarrier.Smtp))
+            for (int i = 0; i < recipients.Length; i++)
             {
-                if (isHTML)
-                    m.Body = HTMLConverter.ConvertBodyToHTML(m.Body);
-                //Implement code to send with Smtp
-            }
-
-            if (type.Equals(MessageCarrier.VMessage))
-            {
-                if (isHTML)
-                    m.Body = HTMLConverter.ConvertBodyToHTML(m.Body);
-                //Implement code to send with Smtp VMessage
+                SendMessage(recipients[i], messageCarrier, message, isHTML);
             }
         }
     }
